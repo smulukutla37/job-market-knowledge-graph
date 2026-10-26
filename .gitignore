@@ -1,0 +1,10 @@
+# Python virtual environment (recreate with: pip install -r requirements.txt)
+.venv/
+
+# Secrets: Neo4j credentials live only on this computer
+.env
+
+# Python and editor clutter
+__pycache__/
+*.pyc
+.vscode/
