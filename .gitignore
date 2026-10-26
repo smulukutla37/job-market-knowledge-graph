@@ -9,3 +9,6 @@ __pycache__/
 *.pyc
 .vscode/
 data/
+
+# Generated graph pages from ask.py --graph
+graph.html
