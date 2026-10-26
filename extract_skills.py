@@ -1,5 +1,5 @@
 import os
-import re
+
 from collections import Counter
 
 import truststore
@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
 from skills_taxonomy import SKILLS
+from skill_matcher import find_skills
 
 load_dotenv()
 
@@ -18,11 +19,6 @@ AUTH = (os.environ["NEO4J_USERNAME"], os.environ["NEO4J_PASSWORD"])
 DATABASE = os.environ["NEO4J_DATABASE"]
 BATCH_SIZE = 1000
 
-# One compiled pattern per canonical skill: all its aliases, whole words only
-PATTERNS = {
-    name: re.compile(r"\b(?:" + "|".join(aliases) + r")\b", re.IGNORECASE)
-    for name, (_, aliases) in SKILLS.items()
-}
 
 CONSTRAINTS = [
     "CREATE CONSTRAINT skill_name IF NOT EXISTS FOR (s:Skill) REQUIRE s.name IS UNIQUE",
@@ -45,9 +41,6 @@ MERGE (j)-[:MENTIONS]->(k)
 """
 
 
-def find_skills(text):
-    """Return the canonical names of every skill whose aliases appear in the text."""
-    return sorted(name for name, pattern in PATTERNS.items() if pattern.search(text))
 
 
 def main():
