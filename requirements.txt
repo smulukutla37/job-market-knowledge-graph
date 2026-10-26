@@ -3,3 +3,4 @@ python-dotenv
 truststore
 pandas
 pytest
+anthropic
