@@ -6,9 +6,9 @@ A knowledge graph of 804 real data engineering, BI and data architecture job pos
 **Python** and **Claude**. It resolves messy skill mentions into a clean taxonomy and answers plain-English
 questions about the job market by generating Cypher (GraphRAG), with read-only guardrails.
 
-```
 ![Jobs in Georgia that mention Snowflake, and the companies that posted them](docs/graph.png)
 
+```
 $ python ask.py "Which companies post the most senior data engineer jobs?"
 
 Capital One posts the most senior data engineer jobs (14), followed by Publicis Sapient (12) ...
